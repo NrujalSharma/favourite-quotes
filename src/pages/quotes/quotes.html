@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ quoteGroup.category | uppercase}}</ion-title>
+    <!-- <ion-title>{{ quoteGroup?.category | uppercase}}</ion-title>
+      Use this if using ionViewDidLoad method
+   -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="card-background-page" padding>
+
+
+
+  <ion-card *ngFor="let quote of quoteGroup.quotes; let i = index">
+    <img src="../../assets/imgs/logo.png"/>
+    <div class="card-title">São Paulo</div>
+    <div class="card-subtitle">41 Listings</div>
+
+    <ion-card-header>
+      #{{ i+1 }}
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ quote.text }}</p>
+      <p class="author">{{ quote.person }}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col text-right>
+        <button ion-button clear small *ngIf="!isFavourite(quote)" (click) = "onAddToFavourites(quote)">Favourite</button>
+        <button ion-button clear small color="danger" *ngIf="isFavourite(quote)" (click) = "onRemoveFromFavourites(quote)">Unfavourite</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
+
+<ion-footer padding>
+  This is footer.
+</ion-footer>
